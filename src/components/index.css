@@ -331,7 +331,7 @@ input[type="range"]::-webkit-slider-thumb {
   padding: 0;
   border: 0px solid;
   position: absolute;
-  z-index: 999;
+  z-index: 1;
   background: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   justify-content: center;
@@ -352,8 +352,11 @@ input[type="range"]::-webkit-slider-thumb {
   transition: transform 0.2s ease-in-out;
   display: grid;
 }
+
 .tap_area {
   position: relative;
+  max-width: 100%;
+  max-height: 100%;
 }
 .tap_area::before {
   content: "";
@@ -385,6 +388,23 @@ input[type="range"]::-webkit-slider-thumb {
   padding: 1rem;
   border-radius: inherit;
 }
+.popup-title {
+  
+  opacity: 1;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  font-family: "Corben", serif;
+  font-weight: 700;
+  font-style: normal;
+  text-decoration: underline;
+}
+.hotspot-text {
+  font-size: 16px;
+  font-family: Helvetica, 'Helvetica Neue', Arial, 'Lucida Grande', sans-serif;
+  letter-spacing: 0.0em;
+  margin-block-start: 1rem;
+}
 
 @keyframes ping {
   0% {
@@ -396,16 +416,82 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .popup_test {
-  width: 100px;
-  height: 100px;
-  background-color: white;
-  z-index: 999;
+  background: rgba(255, 255, 255, 0.6);
+  color: rgb(0, 0, 0);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 5px 30px rgba(39, 39, 39, 0);
+  border: 1px solid rgba(39, 39, 39, 0.12);
+  max-height: 350px;
+  max-width: 380px;
+  z-index: 10;
+  padding: 2rem;
+}
+@media only screen and (max-width: 999px) {
+  .popup_test {
+    background: rgb(255, 255, 255);
+    max-width: none;
+    padding: 1.5rem;
+    color: rgb(39, 39, 39);
+    border-radius: 8px;
+    flex-direction: column;
+    z-index: 999;
+    display: flex;
+    position: fixed !important;
+    margin: 0.5rem !important;
+    left: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+    animation: 1s slide-up;
+  }
+
+  .tap_area {
+    max-width: 60%;
+  }
+  .tap_area::after {
+    max-height: 60%;
+    padding: 0.75rem;
+  }
+  #closing-icon {
+    width: 15px;
+    height: 15px;
+  }
+  #reevela-logo {
+    width: 15px;
+    height: 20px;
+  }
+  .hot-spot_dot {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .popup-title {
+    font-size: 1rem;
+  }
+  .hotspot-text {
+    font-size: 14px;
+  }
 }
 
-.hotspot-text {
-  font-size: 10px;
-  font-family: "Inter", sans-serif;
+@keyframes slide-up {
+  from {
+    max-height: 0px;
+  }
+  to {
+    max-height: 350px;
+  }
 }
+@media only screen and (max-width: 999px) {
+  @keyframes slide-up {
+    from {
+      max-height: 0px;
+    }
+    to {
+      max-height: 250px;
+    }
+  }
+}
+
+
 .venueimage {
   display: flex;
   justify-content: center;
@@ -413,4 +499,24 @@ input[type="range"]::-webkit-slider-thumb {
 .venueimage img {
   max-width: 100%;
   max-height: 100%;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#reevela-logo {
+  display: block;
+  margin: 0 auto;
+  stroke: black;
+  fill: black;
+  transition: transform 0.3s ease-in-out;
+}
+
+#closing-icon {
+  display: block;
+  margin: 0 auto;
+  stroke: black;
+  transition: transform 0.3s ease-in-out;
 }
